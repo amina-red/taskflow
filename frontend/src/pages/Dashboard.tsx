@@ -6,7 +6,7 @@ import Sidebar from '../components/Sidebar'
 import KanbanBoard from '../components/KanbanBoard'
 
 export default function Dashboard() {
-  const { projects, setProjects, setActiveProject, activeProject, tasks, user } = useStore()
+  const { projects, setProjects, setActiveProject, activeProject, tasks } = useStore()
 
   useEffect(() => {
     api.get('/projects').then(({ data }) => {
