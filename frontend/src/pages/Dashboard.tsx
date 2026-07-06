@@ -16,7 +16,8 @@ export default function Dashboard() {
   }, [])
 
   useEffect(() => {
-    const ws = new WebSocket(`ws://localhost:8080/ws?token=${localStorage.getItem('token')}`)
+const wsUrl = import.meta.env.VITE_WS_URL || 'ws://localhost:8080/ws'
+const ws = new WebSocket(`${wsUrl}?token=${localStorage.getItem('token')}`)
     ws.onmessage = (e) => {
       const msg = JSON.parse(e.data)
       if (msg.type === 'task_update') {

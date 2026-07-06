@@ -12,7 +12,11 @@ var DB *sql.DB
 
 func Connect() {
 	var err error
-	DB, err = sql.Open("postgres", os.Getenv("DB_URL"))
+	dbURL := os.Getenv("DATABASE_URL")
+	if dbURL == "" {
+		dbURL = os.Getenv("DB_URL")
+	}
+	DB, err = sql.Open("postgres", dbURL)
 	if err != nil {
 		log.Fatal("Failed to connect to database:", err)
 	}
