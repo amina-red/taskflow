@@ -1,21 +1,22 @@
 import { create } from 'zustand'
 
-type Task = {
+export type Task = {
   id: number
   title: string
   description: string
   status: string
   priority: string
   project_id: number
+  due_date?: string
 }
 
-type Project = {
+export type Project = {
   id: number
   name: string
   color: string
 }
 
-type User = {
+export type User = {
   id: number
   name: string
   email: string
@@ -27,6 +28,8 @@ type Store = {
   projects: Project[]
   tasks: Task[]
   activeProject: number | null
+  darkMode: boolean
+  activeView: 'board' | 'calendar' | 'analytics'
   setUser: (user: User, token: string) => void
   logout: () => void
   setProjects: (projects: Project[]) => void
@@ -34,6 +37,9 @@ type Store = {
   setActiveProject: (id: number) => void
   updateTask: (task: Task) => void
   addTask: (task: Task) => void
+  deleteTask: (id: number) => void
+  toggleDarkMode: () => void
+  setActiveView: (view: 'board' | 'calendar' | 'analytics') => void
 }
 
 export const useStore = create<Store>((set) => ({
@@ -42,6 +48,8 @@ export const useStore = create<Store>((set) => ({
   projects: [],
   tasks: [],
   activeProject: null,
+  darkMode: localStorage.getItem('darkMode') === 'true',
+  activeView: 'board',
   setUser: (user, token) => {
     localStorage.setItem('token', token)
     set({ user, token })
@@ -56,7 +64,14 @@ export const useStore = create<Store>((set) => ({
   updateTask: (task) => set((state) => ({
     tasks: state.tasks.map(t => t.id === task.id ? task : t)
   })),
-  addTask: (task) => set((state) => ({
-    tasks: [task, ...state.tasks]
-  })),
+  addTask: (task) => set((state) => ({ tasks: [task, ...state.tasks] })),
+  deleteTask: (id) => set((state) => ({ tasks: state.tasks.filter(t => t.id !== id) })),
+  toggleDarkMode: () => set((state) => {
+    const next = !state.darkMode
+    localStorage.setItem('darkMode', String(next))
+    if (next) document.documentElement.classList.add('dark')
+    else document.documentElement.classList.remove('dark')
+    return { darkMode: next }
+  }),
+  setActiveView: (view) => set({ activeView: view }),
 }))
