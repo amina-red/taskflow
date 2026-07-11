@@ -2,7 +2,7 @@ import { useStore } from '../store/useStore'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts'
 
 const COLORS = ['#94a3b8', '#f59e0b', '#6366f1', '#10b981']
-const PRIORITY_COLORS = { low: '#94a3b8', medium: '#f59e0b', high: '#ef4444' }
+
 
 export default function Analytics() {
   const { tasks, projects } = useStore()

@@ -1,4 +1,4 @@
-import { LayoutDashboard, Kanban, Calendar, BarChart3, Plus, Settings, LogOut, Moon, Sun } from 'lucide-react'
+import { LayoutDashboard, Kanban, Calendar, BarChart3, Settings, LogOut, Moon, Sun } from 'lucide-react'
 import { useStore } from '../store/useStore'
 
 export default function Sidebar() {
