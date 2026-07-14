@@ -1,4 +1,4 @@
-import { LayoutDashboard, Kanban, Calendar, BarChart3, Settings, LogOut, Moon, Sun } from 'lucide-react'
+import { LayoutDashboard, Calendar, BarChart3, Settings, LogOut, Moon, Sun, Kanban } from 'lucide-react' 
 import { useStore } from '../store/useStore'
 
 export default function Sidebar() {
@@ -23,12 +23,13 @@ export default function Sidebar() {
       <nav className="p-2 flex-1 overflow-y-auto">
         <div className="mb-4">
           <p className="text-xs font-medium text-gray-400 px-2 mb-1 uppercase tracking-wider">Views</p>
-          {[
-            { icon: <LayoutDashboard size={15} />, label: 'Dashboard', view: 'board' as const },
-            { icon: <Kanban size={15} />, label: 'Board', view: 'board' as const },
-            { icon: <Calendar size={15} />, label: 'Calendar', view: 'calendar' as const },
-            { icon: <BarChart3 size={15} />, label: 'Analytics', view: 'analytics' as const },
-          ].map(item => (
+        {[
+ 
+  { icon: <LayoutDashboard size={15} />, label: 'Dashboard', view: 'board' as const },
+  { icon: <Calendar size={15} />, label: 'Calendar', view: 'calendar' as const },
+  { icon: <BarChart3 size={15} />, label: 'Analytics', view: 'analytics' as const },
+  { icon: <Settings size={15} />, label: 'Settings', view: 'settings' as const },
+].map(item => (
             <div key={item.label} onClick={() => setActiveView(item.view)}
               className={`flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm cursor-pointer transition-colors ${
                 activeView === item.view ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800'
@@ -53,9 +54,7 @@ export default function Sidebar() {
       </nav>
 
       <div className="p-2 border-t border-gray-100 dark:border-gray-700">
-        <div className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-          <Settings size={15} /> Settings
-        </div>
+    
         <div onClick={logout} className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
           <LogOut size={15} /> Sign out
         </div>

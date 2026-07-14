@@ -52,5 +52,6 @@ func main() {
 		port = "8080"
 	}
 	log.Printf("Server running on port %s", port)
+	handlers.StartReminderJob()
 	r.Run(":" + port)
 }

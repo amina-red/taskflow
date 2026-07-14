@@ -6,6 +6,7 @@ import Sidebar from '../components/Sidebar'
 import KanbanBoard from '../components/KanbanBoard'
 import CalendarView from '../components/CalendarView'
 import Analytics from '../components/Analytics'
+import SettingsPage from './Settings'
 
 export default function Dashboard() {
   const { projects, setProjects, setActiveProject, activeProject, tasks, activeView, darkMode } = useStore()
@@ -66,11 +67,13 @@ export default function Dashboard() {
         </div>
 
         <div className="p-6 overflow-auto">
-          {activeView === 'analytics' ? (
-            <Analytics />
-          ) : activeView === 'calendar' ? (
-            <CalendarView />
-          ) : (
+         {activeView === 'settings' ? (
+  <SettingsPage />
+) : activeView === 'analytics' ? (
+  <Analytics />
+) : activeView === 'calendar' ? (
+  <CalendarView />
+) : (
             <>
               <div className="grid grid-cols-4 gap-4 mb-6">
                 {[

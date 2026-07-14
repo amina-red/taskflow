@@ -29,7 +29,7 @@ type Store = {
   tasks: Task[]
   activeProject: number | null
   darkMode: boolean
-  activeView: 'board' | 'calendar' | 'analytics'
+  activeView: 'board' | 'calendar' | 'analytics' | 'settings'
   setUser: (user: User, token: string) => void
   logout: () => void
   setProjects: (projects: Project[]) => void
@@ -39,7 +39,7 @@ type Store = {
   addTask: (task: Task) => void
   deleteTask: (id: number) => void
   toggleDarkMode: () => void
-  setActiveView: (view: 'board' | 'calendar' | 'analytics') => void
+  setActiveView: (view: 'board' | 'calendar' | 'analytics' | 'settings') => void
 }
 
 export const useStore = create<Store>((set) => ({
