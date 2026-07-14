@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useStore } from '../store/useStore'
-import { Bell, Moon, Sun, User, Shield } from 'lucide-react'
+import { Bell, Moon, User, Shield } from 'lucide-react'
 import api from '../lib/api'
 
 export default function SettingsPage() {
